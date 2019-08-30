@@ -1,0 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<footer>
+	<h3>PoketMon - HairSalon Copyright&copy; 2019, 최고의 포켓몬 미용실이
+		될때까지..!</h3>
+</footer>
+</body>
+</html>

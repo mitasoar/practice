@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css"
+	href=<%=request.getContextPath() + "/css/style.css"%>>
+<link
+	href="https://fonts.googleapis.com/css?family=Cute+Font&display=swap"
+	rel="stylesheet">
+</head>
+<%
+	/*
+	boolean isFound = false;
+	Cookie[] cookies = request.getCookies();
+	for (Cookie ck : cookies) {
+		if (ck.getName().equals("user") && ck.getValue().equals("admin")) {
+			isFound = true;
+		}
+	}
+	*/
+	boolean isFound = false;
+
+	String userName = (String) request.getSession().getAttribute("user");
+	if (userName != null && userName.split("-")[0].equals("guest")) {
+		isFound = true;
+	}
+%>
+<body>
+
+	<header>포켓몬헤어살롱</header>
+
+	<nav>
+		<a href='<%=request.getContextPath() + "/studio/designer"%>'>디자이너소개</a>
+		<a href='<%=request.getContextPath() + "/studio/list"%>'>미용예약현황</a> 
+		<a href='<%=request.getContextPath() + "/studio/reservation"%>'>미용예약하기</a>
+		<a href='<%=request.getContextPath() + "/studio/check"%>'>나의예약확인</a>
+		<%
+			if (!isFound) {
+		%>
+		<a href='<%=request.getContextPath() + "/studio/login"%>' id='log'>로그인</a>
+		<a href='<%=request.getContextPath() + "/studio/add"%>' id='log'>회원가입</a>
+		<%
+			} else {
+		%>
+		<a href='<%=request.getContextPath() + "/studio/logout"%>' id='log'>로그아웃</a>
+		<a href='<%=request.getContextPath() + "/studio/update"%>' id='log'>회원정보수정</a>
+		<%
+			}
+		%>
+	</nav>
+
+
+	<script>
+		var error = '<%=request.getParameter("error")%>'
+		if (error !== 'null') {
+			alert(error);
+		}
+	</script>
