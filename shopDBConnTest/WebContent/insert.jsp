@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+	*{margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; list-style: none;}
+	
+	p {margin: 30px 0; text-align: center;}
+	
+	a {background-color: lightgray; color: black; padding: 0 20px;}
+</style>
+<% if (request.getAttribute("exception") == null)  {%>
+<title>회원 추가 성공</title>
+<%} else { %>
+<title>회원 추가 실패</title>
+<%} %>
+</head>
+<body>
+	<% if (request.getAttribute("exception") == null)  {%>
+	<p>입력이 완료되었습니다.</p>
+	<%} else { %>
+	<p>입력이 완료되지 않았습니다.</p>
+	<%} %>
+	<p><a href='<%=request.getContextPath() + "/list"%>'>리스트 보기</a></p>
+</body>
+</html>
