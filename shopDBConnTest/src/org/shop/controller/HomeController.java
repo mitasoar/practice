@@ -47,16 +47,22 @@ public class HomeController extends HttpServlet {
 
 	private void updateMember(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		Member m = new Member();
-		m.setId(Integer.parseInt(request.getParameter("id")));
-		m.setName(request.getParameter("name"));
-		m.setPhone(request.getParameter("phone"));
-		m.setAddress(request.getParameter("address"));
 
-		if (MemberDAO.getInstance().updateMember(m)) {
-			request.getRequestDispatcher("update.jsp").forward(request, response);
-		} else {
+		try {
+			Member m = new Member();
+
+			m.setId(Integer.parseInt(request.getParameter("id")));
+			m.setName(request.getParameter("name"));
+			m.setPhone(request.getParameter("phone"));
+			m.setAddress(request.getParameter("address"));
+
+			if (MemberDAO.getInstance().updateMember(m)) {
+				request.getRequestDispatcher("update.jsp").forward(request, response);
+			} else {
+				request.setAttribute("exception", "error");
+				request.getRequestDispatcher("update.jsp").forward(request, response);
+			}
+		} catch (Exception e) {
 			request.setAttribute("exception", "error");
 			request.getRequestDispatcher("update.jsp").forward(request, response);
 		}
@@ -66,9 +72,14 @@ public class HomeController extends HttpServlet {
 	private void deleteMember(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (MemberDAO.getInstance().deleteMember(Integer.parseInt(request.getParameter("id")))) {
-			request.getRequestDispatcher("delete.jsp").forward(request, response);
-		} else {
+		try {
+			if (MemberDAO.getInstance().deleteMember(Integer.parseInt(request.getParameter("id")))) {
+				request.getRequestDispatcher("delete.jsp").forward(request, response);
+			} else {
+				request.setAttribute("exception", "error");
+				request.getRequestDispatcher("delete.jsp").forward(request, response);
+			}
+		} catch (Exception e) {
 			request.setAttribute("exception", "error");
 			request.getRequestDispatcher("delete.jsp").forward(request, response);
 		}
@@ -78,14 +89,21 @@ public class HomeController extends HttpServlet {
 	private void insertMember(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Member m = new Member();
-		m.setName(request.getParameter("name"));
-		m.setPhone(request.getParameter("phone"));
-		m.setAddress(request.getParameter("address"));
+		try {
+			
+			Member m = new Member();
+			
+			m.setName(request.getParameter("name"));
+			m.setPhone(request.getParameter("phone"));
+			m.setAddress(request.getParameter("address"));
+			if (MemberDAO.getInstance().addMember(m)) {
+				request.getRequestDispatcher("insert.jsp").forward(request, response);
+			} else {
+				request.setAttribute("exception", "error");
+				request.getRequestDispatcher("insert.jsp").forward(request, response);
+			}
 
-		if (MemberDAO.getInstance().addMember(m)) {
-			request.getRequestDispatcher("insert.jsp").forward(request, response);
-		} else {
+		} catch (Exception e) {
 			request.setAttribute("exception", "error");
 			request.getRequestDispatcher("insert.jsp").forward(request, response);
 		}
