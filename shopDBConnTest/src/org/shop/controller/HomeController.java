@@ -56,14 +56,11 @@ public class HomeController extends HttpServlet {
 			m.setPhone(request.getParameter("phone"));
 			m.setAddress(request.getParameter("address"));
 
-			if (MemberDAO.getInstance().updateMember(m)) {
-				request.getRequestDispatcher("update.jsp").forward(request, response);
-			} else {
+			if (!(MemberDAO.getInstance().updateMember(m)))
 				request.setAttribute("exception", "error");
-				request.getRequestDispatcher("update.jsp").forward(request, response);
-			}
 		} catch (Exception e) {
 			request.setAttribute("exception", "error");
+		} finally {
 			request.getRequestDispatcher("update.jsp").forward(request, response);
 		}
 
@@ -73,14 +70,11 @@ public class HomeController extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			if (MemberDAO.getInstance().deleteMember(Integer.parseInt(request.getParameter("id")))) {
-				request.getRequestDispatcher("delete.jsp").forward(request, response);
-			} else {
+			if (!(MemberDAO.getInstance().deleteMember(Integer.parseInt(request.getParameter("id")))))
 				request.setAttribute("exception", "error");
-				request.getRequestDispatcher("delete.jsp").forward(request, response);
-			}
 		} catch (Exception e) {
 			request.setAttribute("exception", "error");
+		} finally {
 			request.getRequestDispatcher("delete.jsp").forward(request, response);
 		}
 
@@ -90,21 +84,19 @@ public class HomeController extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			
+
 			Member m = new Member();
-			
+
 			m.setName(request.getParameter("name"));
 			m.setPhone(request.getParameter("phone"));
 			m.setAddress(request.getParameter("address"));
-			if (MemberDAO.getInstance().addMember(m)) {
-				request.getRequestDispatcher("insert.jsp").forward(request, response);
-			} else {
+
+			if (!(MemberDAO.getInstance().addMember(m)))
 				request.setAttribute("exception", "error");
-				request.getRequestDispatcher("insert.jsp").forward(request, response);
-			}
 
 		} catch (Exception e) {
 			request.setAttribute("exception", "error");
+		} finally {
 			request.getRequestDispatcher("insert.jsp").forward(request, response);
 		}
 
