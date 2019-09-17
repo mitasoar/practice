@@ -80,8 +80,8 @@ public class EmpRepository implements IEmpRepository {
 		String sql = "insert into employees (employee_id, first_name, last_name, email, phone_number, hire_date, "
 				+ "job_id, salary, commission_pct, manager_id, department_id) values (?,?,?,?,?,sysdate,?,?,?,?,?)";
 		jdbcTemplate.update(sql, emp.getEmployeeId(), emp.getFirstName(), emp.getLastName(), emp.getEmail(),
-				emp.getPhoneNumber(), emp.getJobId(), emp.getSalary(), emp.getCommissionPct(),
-				emp.getManagerId(), emp.getDepartmentId());
+				emp.getPhoneNumber(), emp.getJobId(), emp.getSalary(), emp.getCommissionPct(), emp.getManagerId(),
+				emp.getDepartmentId());
 	}
 
 	@Override

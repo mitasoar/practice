@@ -46,6 +46,8 @@ public class EmpMain {
 		System.out.println(emp210);
 
 		System.out.println("-- 210번 사원의 급여를 10% 인상시킵니다.");
+//		System.out.println(emp.getSalary());
+//		System.out.println(emp.getSalary() * 1.1);
 		emp.setSalary(emp210.getSalary() * 1.1);
 		empService.updateEmp(emp210);
 

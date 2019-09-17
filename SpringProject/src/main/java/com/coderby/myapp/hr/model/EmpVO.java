@@ -3,10 +3,28 @@ package com.coderby.myapp.hr.model;
 import java.sql.Date;
 
 public class EmpVO {
-	private int employeeId, managerId, departmentId;
-	private String firstName, lastName, email, phoneNumber, jobId;
+	
+	private int employeeId;
+	
+	private String firstName;
+	
+	private String lastName;
+	
+	private String email;
+	
+	private String phoneNumber;
+	
+	private String jobId;
+	
+	private int managerId;
+	
+	private int departmentId;
+	
 	private Date hireDate;
-	private double salary, commissionPct;
+	
+	private double salary;
+	
+	private double commissionPct;
 
 	public int getEmployeeId() {
 		return employeeId;
