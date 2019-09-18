@@ -2,29 +2,43 @@ package com.coderby.myapp.hr.model;
 
 import java.sql.Date;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+
 public class EmpVO {
-	
+
+	@Min(value = 300, message = "사원번호는 300이상" )
 	private int employeeId;
-	
+
+	@Pattern(regexp = "[a-zA-Z가-힣]{1,}", message = "이름 입력")
 	private String firstName;
-	
+
+	@Pattern(regexp = "[a-zA-Z가-힣]{1,}", message = "성 입력")
 	private String lastName;
-	
+
+	@Pattern(regexp = "[A-Z0-9]{2,}", message = "영문 대문자와 숫자를 이용해 두자리 이상")
 	private String email;
-	
+
+	@Pattern(regexp = "^[0-9]{2,3}[-\\.]?[0-9]{3,4}[-\\.]?[0-9]{4}$", message = "유효한 전화번호가 아님")
 	private String phoneNumber;
 	
-	private String jobId;
-	
-	private int managerId;
-	
-	private int departmentId;
-	
 	private Date hireDate;
-	
+
+	private String jobId;
+
+	@Digits(integer=6, fraction=2, message="잘못된 급여액")
 	private double salary;
-	
+
+	@DecimalMin(value="0.00", message = "보너스율 >= 0.0")
+	@DecimalMax(value="0.99", message = "보너스율 < 1")
 	private double commissionPct;
+
+	private int managerId;
+
+	private int departmentId;
 
 	public int getEmployeeId() {
 		return employeeId;
