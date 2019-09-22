@@ -131,17 +131,17 @@ public class EmpController {
 		return mav;
 	}
 	
-//	static final Logger logger = LoggerFactory.getLogger(EmpController.class);
-//	
-//	@ExceptionHandler({SQLException.class, DataAccessException.class})
-//	public ModelAndView databaseError(HttpServletRequest request, Exception ex) {
-//		logger.error("Request: " + request.getRequestURL() + " raised " + ex);
-//		
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("exception", ex);
-//		mav.addObject("url", request.getRequestURL());
-//		mav.setViewName("hr/error");
-//		return mav;
-//	}
+	static final Logger logger = LoggerFactory.getLogger(EmpController.class);
+	
+	@ExceptionHandler({SQLException.class, DataAccessException.class})
+	public ModelAndView databaseError(HttpServletRequest request, Exception ex) {
+		logger.error("Request: " + request.getRequestURL() + " raised " + ex);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("exception", ex);
+		mav.addObject("url", request.getRequestURL());
+		mav.setViewName("hr/error");
+		return mav;
+	}
 	
 }
