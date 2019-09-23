@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 
 public class EmpVO {
 
-	@Min(value = 300, message = "사원번호는 300이상" )
+	@Min(value = 207, message = "사원번호는 207이상" )
 	private int employeeId;
 
 	@Pattern(regexp = "[a-zA-Z가-힣]{1,}", message = "이름 입력")

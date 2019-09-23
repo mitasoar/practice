@@ -3,5 +3,9 @@
 	<version>1</version>
 	<pluginVersion><![CDATA[3.9.10.201908091135-CI-B2297]]></pluginVersion>
 	<configs>
+		<config>
+			<file>src/main/java/com/coderby/myapp/hr/dao/rk.xml</file>
+			<name><![CDATA[rk]]></name>
+		</config>
 	</configs>
 </webflow-project-description>

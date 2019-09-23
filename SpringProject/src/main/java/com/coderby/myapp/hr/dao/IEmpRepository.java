@@ -3,12 +3,14 @@ package com.coderby.myapp.hr.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.coderby.myapp.hr.model.EmpVO;
 
 public interface IEmpRepository {
 	int getEmpCount();
 
-	int getEmpCount(int deptid);
+	int getEmpCount(@Param("deptid") int deptid);
 
 	List<EmpVO> getEmpList();
 
@@ -20,7 +22,7 @@ public interface IEmpRepository {
 
 	void deleteJobHistory(int empid);
 
-	void deleteEmp(int empid, String email);
+	void deleteEmp(@Param("empid") int empid,@Param("email") String email);
 
 	List<Map<String, Object>> getAllDeptId();
 
